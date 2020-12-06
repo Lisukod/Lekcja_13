@@ -207,7 +207,7 @@ def saldo_funier(manager, temp_sum, comment):
 
 
 @manager.assign("sprzedaż", 3)
-def utylizacja(manager, product_id, unit_price, product_amount):
+def odesłanie(manager, product_id, unit_price, product_amount):
     # Jeśli coś jest na magazynie odsyła wszystkie produkty poza egzemplarzem wystawowym
     if product_id in manager.storehouse:
         if manager.storehouse[product_id] > 1:
@@ -221,6 +221,13 @@ def buy_funier(manager, product_id, unit_price, product_amount):
     print(
         "Zakup produktu {}. Cena za sztukę {}".format(product_id, unit_price)
     )
+
+
+@manager.assign("utylizacja", 1)
+def utylizacja(manager, product_id):
+    print(manager.storehouse)
+    manager.storehouse.pop(product_id, None)
+    print(manager.storehouse)
 
 
 manager.main()

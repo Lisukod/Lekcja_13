@@ -23,4 +23,6 @@ jetson
 saldo
 -5000
 korona
+utylizacja
+raspberry
 stop
